@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Clock</title>
+        <link rel="stylesheet" href="styles/style.css">
+    </head>
+
+    <body>
+
+        <h1 style="font-variant: small-caps ">Clock</h1>
+        <h3 style="font-variant: small-caps ">Current Time <span class="currentTime"></span></h3>
+
+
+        <div class="bg">
+        <div class="clock">
+            <div class="clock-face">
+                <div class="hand hour-hand"></div>
+                <div class="hand min-hand"></div>
+                <div class="hand second-hand"></div>
+            </div>
+        </div>
+        <p class="programmer">Rohit Nirmal</p>
+        </div>
+
+        
+
+
+        <script>
+
+            const secondHand = document.querySelector(".second-hand");
+            secondHand.style.height = '2px';
+
+            const minsHand = document.querySelector(".min-hand");
+            minsHand.style.height = '4px';
+
+            const hourHand = document.querySelector(".hour-hand");
+
+            function setDate(){
+                const now = new Date();
+
+                const seconds = now.getSeconds();
+                const secondsDegrees = ((seconds / 60 ) * 360) + 90;
+                secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+                const mins = now.getMinutes();
+                const minsDegrees = ((mins / 60 ) * 360) + 90;
+                minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+
+                const hours = now.getHours();
+                const hoursDegrees = ((hours / 60 ) * 360) + 90;
+                hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+                const time = document.querySelector(".currentTime");
+                time.innerHTML = now.toLocaleTimeString('en-US',{hour : 'numeric',minute :'numeric',second:'numeric', hour12 : true});
+               
+            }
+
+            
+
+            setInterval(setDate, 1000);
+
+        </script>
+
+    </body>
+</html>
